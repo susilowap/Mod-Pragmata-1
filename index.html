@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Download Mod</title>
+
+<style>
+body {
+    font-family: Arial, sans-serif;
+    background: #0f172a;
+    color: white;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+}
+
+/* =========================
+   IKLAN KIRI & KANAN
+========================= */
+.ads-left, .ads-right {
+    position: fixed;
+    top: 0;
+    width: 160px;
+    height: 100vh;
+    background: #111827;
+    padding: 10px;
+    box-sizing: border-box;
+    overflow: auto;
+}
+
+.ads-left { left: 0; }
+.ads-right { right: 0; }
+
+/* hide di mobile */
+@media (max-width: 900px) {
+    .ads-left, .ads-right {
+        display: none;
+    }
+}
+
+.ad-box {
+    background: #1f2937;
+    margin-bottom: 10px;
+    padding: 10px;
+    border-radius: 8px;
+    font-size: 12px;
+    color: #ccc;
+}
+
+/* =========================
+   MAIN CONTENT
+========================= */
+.container {
+    padding: 20px;
+}
+
+.card {
+    background: #1e293b;
+    border-radius: 12px;
+    padding: 20px;
+    max-width: 500px;
+    margin: auto;
+}
+
+button {
+    background: #22c55e;
+    border: none;
+    padding: 12px 20px;
+    color: white;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+}
+
+button:hover {
+    background: #16a34a;
+}
+
+#downloadBtn {
+    display: none;
+}
+
+.timer {
+    margin-top: 15px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- =========================
+     IKLAN KIRI
+========================= -->
+<div class="ads-left">
+    <div class="ad-box">Iklan Kiri 1</div>
+    <div class="ad-box">Iklan Kiri 2</div>
+    <div class="ad-box">Iklan Kiri 3</div>
+</div>
+
+<!-- =========================
+     IKLAN KANAN
+========================= -->
+<div class="ads-right">
+    <div class="ad-box">Iklan Kanan 1</div>
+    <div class="ad-box">Iklan Kanan 2</div>
+    <div class="ad-box">Iklan Kanan 3</div>
+</div>
+
+<!-- =========================
+     CONTENT UTAMA
+========================= -->
+<div class="container">
+    <div class="card">
+
+        <h2 id="title">Loading...</h2>
+
+        <img src="https://via.placeholder.com/400x200" width="100%" style="border-radius:10px;">
+
+        <p>🔥 Mod Download Page</p>
+
+        <button onclick="startTimer()">Download Sekarang</button>
+
+        <div class="timer" id="timerBox"></div>
+
+        <p>🔥 Mau cepet tanpa nunggu?</p>
+
+        <button id="downloadBtn" onclick="downloadFile()">Klik Untuk Download</button>
+
+        <br><br>
+
+        <button onclick="unlockFast()">⚡ Unlock Cepat (Like Video)</button>
+
+    </div>
+</div>
+
+<script>
+/* =========================
+   DATA MOD
+========================= */
+const MOD = {
+    title: "Nusantara Mod",
+    driveLink: "https://www.nexusmods.com/pragmata/mods/33",
+    youtubeLink: "https://www.youtube.com/watch?v=LSn665PaE0g"
+};
+
+document.getElementById("title").innerText = MOD.title;
+
+/* =========================
+   TIMER
+========================= */
+let timeLeft = 30;
+let timerRunning = false;
+
+function startTimer() {
+    if (timerRunning) return;
+    timerRunning = true;
+
+    let box = document.getElementById("timerBox");
+
+    let interval = setInterval(() => {
+        box.innerHTML = "Tunggu " + timeLeft + " detik...";
+        timeLeft--;
+
+        if (timeLeft < 0) {
+            clearInterval(interval);
+            box.innerHTML = "✅ Siap Download!";
+            document.getElementById("downloadBtn").style.display = "inline-block";
+        }
+    }, 1000);
+}
+
+/* =========================
+   DOWNLOAD
+========================= */
+function downloadFile() {
+    window.location.href = MOD.driveLink;
+}
+
+/* =========================
+   LIKE VIDEO UNLOCK
+========================= */
+function unlockFast() {
+    window.open(MOD.youtubeLink, "_blank");
+
+    alert("👉 Untuk unlock cepat:\n1. Like video (opsional)\n2. Kembali ke halaman ini");
+
+    let box = document.getElementById("timerBox");
+    box.innerHTML = "⏳ Verifikasi support...";
+
+    // delay 5 detik
+    setTimeout(() => {
+        document.getElementById("downloadBtn").style.display = "inline-block";
+        box.innerHTML = "🎉 Akses cepat berhasil, download dibuka!";
+    }, 5000);
+}
+</script>
+
+</body>
+</html>
